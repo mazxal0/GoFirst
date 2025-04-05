@@ -1,10 +1,18 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+)
 import "github.com/istrel/storage/internal/storage"
 
 func main() {
 	st := storage.NewStorage()
 
-	fmt.Println("Hello World", st)
+	file, err := st.Upload("test.txt", []byte("Hello World!"))
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println("It was uploaded", file)
 }
